@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<!-- This is a To Do List project developed for a curricular component Information Systems 1, Computer Science, UFCG.  -->
+	<!-- Built by Priscilla de Sales Brito | 2016 -->
+
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Nunito:300">	
+		<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.grey-pink.min.css"/>
+		<link rel="stylesheet" href="css/bootstrap.css"> 
+		<link rel = "stylesheet" href = "css/components.css"/>	
+		<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"> </script>
+		<script src = "js/functions.js"> </script>
+	</head>
+	
+	<body>	
+	
+		<div ng-app="myToDoList">
+		
+			<div ng-controller="controlToDoList">				
+			
+				<div>				
+					<h1>MY TODOs</h1>
+					<h2> I have 
+						<span class="tasks-quantity">{{getTotal()}}</span> tasks to finish and 
+						<span class="tasks-quantity">{{getFeitas()}}</span> already done.
+					</h2>
+				</div>
+				<!--END HEADER-->
+	
+				<div class="list-todo">
+					<div ng-repeat="task in tasksToDo">					
+						<ul class="demo-list-item mdl-list">
+							<li class="mdl-list__item">
+								<span class="mdl-list__item-primary-content">
+									<i class="material-icons checkedcircle" ng-click="checkTask($index)">check_circle</i>
+										<h3 class="tasks-todo"> {{task}} </h3>	
+									<i class="material-icons trashcan" ng-click="removeFromToDo($index)">delete_forever</i>
+								</span>
+							</li>
+						</ul>									
+					</div>					
+				</div>
+				<!--END "TO DO" BOX-->
+				
+				<div class="list-done">
+					<div ng-repeat="task in tasksDone">
+						<ul class="demo-list-item-done mdl-list">
+							<li class="mdl-list__item">
+								<span class="mdl-list__item-primary-content">
+									<i class="material-icons undone" ng-click="uncheckTask($index)">undo</i>
+										<h3 class="tasks-done"> {{task}} </h3>	
+									<i class="material-icons trashcan" ng-click="removeFromDone($index)">delete_forever</i>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!--END "DONE" BOX-->
+				
+				<form class="label-position-input" action="#">
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<input class="mdl-textfield__input" type="text" id="task" ng-model="addMe"/>
+						<label class="mdl-textfield__label" for="task"> What I have to do is... </label>
+					</div>
+				</form>	
+				<!--END INPUT FORM-->
+				
+				<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ng-click=addItem();>
+					<i class="material-icons"> add </i>
+				</button>&emsp;<span class="error-alert-input">{{errorText}}</span>
+				<!--END INPUT BUTTON-->
+				
+				<button id="menu-speed" class="mdl-button mdl-js-button mdl-button--icon">
+					<i class="material-icons">more_vert</i>
+				</button>		
+				<ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="menu-speed">
+					<li class="mdl-menu__item">Option I</li>
+					<li class="mdl-menu__item">Option II</li>
+					<li class="mdl-menu__item">Option III</li>
+				</ul>
+				<!--END MENU-->
+				
+			</div>
+			<!--END CONTROLLER-->
+			
+		</div>
+		<!--END APP-->
+		
+	</body>  
+	
+</html>
